@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        /**
+         * alpha translation: Parameter umbenennen
+         */
+        const alphaX = x => x;
+        const alphaY = y => y;
+
+        /**
+         * beta reduction: Argument einsetzen
+         */
+        const beta = x => y => x;
+
+        /* kürzen Beispiel
+        (f => x => f(x)) (alphaX)(1) // alphaX kürzt f weg
+        (x => alphaX(x)) (1) // 1 kürzt x weg
+        (alphaX(1))
+        (x => x)(1) // alpha einsetzen
+        1
+        */
+
+        /**
+         * eta reduction: Parameter kürzen
+         */
+        const eta = x => y => y;
+
+        /* kürzen Beispiel
+        x => y => plus (x)(y) // y kann gekürzt werden
+        x => plus(x) // x kann gekürzt werden
+        plus
+        */
+
+
+        /**
+         * Beispiele
+         */
+        document.writeln(alphaX(alphaX) === alphaX)
+        document.writeln(beta(alphaX)(undefined) === alphaX);
+        document.writeln(eta(undefined)(alphaX) === alphaX);
+
+
+    </script>
+
+</body>
+</html>

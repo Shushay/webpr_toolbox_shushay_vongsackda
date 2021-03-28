@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        /**
+         * einfacher Funktionsaufruf
+         */
+        function fun1()    { return 1; }
+        const noReturn3 = () => 1;
+
+        /**
+         * verschachtelter Funktionsaufruf
+         */
+        function doit(waszutunist) {
+            return function bla(arg) { return waszutunist(arg) }
+        }
+        const doit2 = callme => arg => callme(arg) ;
+
+
+        /**
+         * gleicher Funktionsname nicht möglich. Nur letzte Funktion zählt.
+         * unbrauchbare Funktionen
+         */
+        function fun2()    { return 1; }
+        function fun2(arg) { return arg; }
+
+        function noReturn()    { 1; } //result is undefined
+        const noReturn2 = () => { 1; }; //result is undefined. No {} !!!
+
+        /**
+         * Funktionen abspeichern in einer Variabel oder Array
+         */
+        const myfun = fun1;
+        const funs = [null, undefined, fun1, fun2];
+        const doFun2 = doit2(fun1);
+
+
+        /**
+         * mögliche Aufrufmöglichkeiten
+         */
+        document.writeln( fun1()   === 1 );
+        document.writeln( fun1(42) === 1 );
+
+        document.writeln( fun2() !== 1  );
+        document.writeln( fun2() === undefined );
+        document.writeln( fun2(42) === 42 );
+
+        document.writeln( noReturn() !== 1 );
+        document.writeln( noReturn2() !== 1 );
+        document.writeln( noReturn3() === 1 );
+
+        document.writeln( myfun() === 1 );
+        document.writeln( funs[2]() === 1 );
+
+
+        document.writeln( doit(fun1)(10) === 1 );
+        document.writeln( doit(fun2)(10) === 10 );
+
+        document.writeln( doit2(fun1)(10) === 1 );
+
+        document.writeln( doFun2(10) === 1 );
+        document.writeln( doFun2()   === 1 );
+    </script>
+</body>
+</html>

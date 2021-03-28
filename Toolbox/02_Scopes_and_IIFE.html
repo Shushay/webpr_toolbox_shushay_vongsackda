@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        /**
+         * global scope
+         * Kein Attribut nicht verwenden
+         */
+        x = 1; //mutable
+
+        //local scope in first layer, no attribute in function overwrite upper layer
+        let let1 = 1;
+        function foo(){
+            let1 = 2;
+            document.writeln(let1 === 2);
+        }
+        foo()
+        document.writeln(let1 === 2);
+
+        /**
+         * local scope
+         * var-Attribut nicht verwenden, nicht mehr zeitgemäss.
+         */
+        var var1 = 1; // mutable
+        let let2 = 1; // mutabale
+        const const1 = 1; // immutable
+
+        /**
+         * IIFE (Immediately invoked function expression)
+         * ein sofort ausgeführter Funktionsaudruck
+         *
+         * Unten aufgeführt, die verschiedene Abstraktionsstufen von der normalen
+         * Funtionsaufruf-syntax zu einer stark vereinfachten.
+         */
+
+        // nicht vereinfachter Funktionsaufruf
+        function foo1(){
+            //do something
+        }
+        foo();
+
+        // Funktion in einer Klammer verschachtelt - kein Funktionsname mehr nötig
+        (function(){
+            //do something
+        }) ();
+
+        // Funktionsattribut wird weggelassen.
+        ( () => {
+            //do something
+        }) ();
+
+        // Das hier verwenden! Viele Klammern werden weggelassen.
+        {
+            //do something
+        }
+    </script>
+
+</body>
+</html>
